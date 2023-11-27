@@ -17,7 +17,6 @@ Currently geared towards Smashline 2.
 
 It's as simple as running 
 
-
 ```bash
 task
 ``` 
