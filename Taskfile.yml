@@ -1,0 +1,38 @@
+version: '3'
+tasks:
+    _download-ssbu-dumped-scripts:
+        cmd: git clone -n --depth=1 --filter=tree:0 https://github.com/WuBoytH/SSBU-Dumped-Scripts.git 
+        internal: true
+        status:
+            - cd SSBU-Dumped-Scripts
+    cargo-skyline-install: 
+        cmd: cargo install cargo-skyline
+        desc: "Installs the cargo-skyline crate."
+        status:
+            - cargo skyline --help
+    copy-lua-and-cpp-files:
+        cmds: 
+            - find {{.SKYLINE_DIR}} -type f -name "cpp.rs" | xargs cp -t .
+            - find {{.SKYLINE_DIR}} -type f -name "lua_const.rs" | xargs cp -t .
+        desc: "Find the `cpp.rs` and `lua_const.rs` files and copy them to the project root."
+        vars: 
+            SKYLINE_DIR: "$HOME/.cargo/git/checkouts/skyline-smash-714c6bb550307c21"
+    download-smashline-template:
+        cmd: git clone https://github.com/WuBoytH/skyline-rs-template.git -b smash_smashline
+        desc: "Download WuBoytH's template for developing Smashline 2 plugins."
+        status: 
+            - cd skyline-rs-template
+    download-ssbu-dumped-scripts:
+        cmds:
+            - git sparse-checkout set --no-cone smashline 
+            - git checkout
+        deps: 
+            - _download-ssbu-dumped-scripts
+        desc: "Download WuBoytH's smashline scripts for every character's attacks."
+        dir: SSBU-Dumped-Scripts 
+    get-param-hashes:
+        cmd: curl -O https://raw.githubusercontent.com/ultimate-research/param-labels/master/ParamLabels.csv
+        desc: "Download Ultimate-Research's spreadsheet containing hashes for (almost) every value in the game."
+        preconditions: 
+            - curl --help
+
