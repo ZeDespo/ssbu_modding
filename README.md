@@ -35,10 +35,9 @@ If you want to perform each step one at a time, all available tasks are availabl
 task --list
 ```
 
-
 ## Commendations Page
 
-Thank you to `Lily Lambda λ` for her [Ultimate Modding Workshop](https://www.youtube.com/watch?v=02NaFwNcC3M&list=PLJ8C0Hk2ZKHvxjfFylRUIbVnDUvxLdejh&pp=iAQB) video series.
+Thank you to [`Lily Lambda λ`](https://github.com/LilyLavender) for her [Ultimate Modding Workshop](https://www.youtube.com/watch?v=02NaFwNcC3M&list=PLJ8C0Hk2ZKHvxjfFylRUIbVnDUvxLdejh&pp=iAQB) video series.
 
 Thank you to [`WuBoytH`](https://github.com/WuBoytH) for providing the Smashline templates. 
 
