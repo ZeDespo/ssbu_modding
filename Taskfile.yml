@@ -53,7 +53,7 @@ tasks:
         deps: 
             - _partial-clone-ssbu-motion-lists
         status: 
-            - test -d smashline
+            - test -d fighter
     get-param-hashes:
         cmd: curl -O https://raw.githubusercontent.com/ultimate-research/param-labels/master/ParamLabels.csv
         desc: "Download The Smash Ultimate Research Group's spreadsheet containing hashes for (almost) every value in the game."
