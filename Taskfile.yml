@@ -1,11 +1,16 @@
 ---
 version: '3'
 tasks:
-    _partial-clone-ssbu-dump:
+    _partial-clone-ssbu-scripts:
         cmd: git clone -n --depth=1 --filter=tree:0 https://github.com/WuBoytH/SSBU-Dumped-Scripts.git
         internal: true
         status: 
             - test -d SSBU-Dumped-Scripts
+    _partial-clone-ssbu-motion-lists:
+        cmd: git clone -n --depth=1 --filter=tree:0 https://github.com/WuBoytH/SSBU-Dumped-Motion-Lists.git        
+        internal: true
+        status: 
+            - test -d SSBU-Dumped-Motion-Lists
     cargo-install-skyline: 
         cmd: cargo install cargo-skyline
         desc: "Installs the cargo-skyline crate."
@@ -29,8 +34,26 @@ tasks:
             - task: cargo-install-skyline
             - task: get-param-hashes
             - task: get-smashline-script-dump
-            - task: copy-lua-and-cpp-files
+            - task: get-global-table
+            - task: get-fighter-motion-list-dump
         desc: "Performs all necessary steps to help you get started to mod SSBU."
+    get-global-table:
+        cmd: curl -O https://raw.githubusercontent.com/WuBoytH/The-WuBor-Patch/dev/WuBor-Utils/src/table_const.rs
+        desc: "Adds WuBoytH's file containing global constants regarding fighter states."
+        preconditions: 
+            - curl --help 
+        status: 
+            - test -f table_const.rs
+    get-fighter-motion-list-dump:
+        cmds: 
+            - git sparse-checkout set --no-cone fighter
+            - git checkout 
+        dir: SSBU-Dumped-Motion-Lists
+        desc: "Adds WuBoytH's smashline template scripts for all characters' attacks. Not a submodule to avoid unnecessary downloads."
+        deps: 
+            - _partial-clone-ssbu-motion-lists
+        status: 
+            - test -d smashline
     get-param-hashes:
         cmd: curl -O https://raw.githubusercontent.com/ultimate-research/param-labels/master/ParamLabels.csv
         desc: "Download The Smash Ultimate Research Group's spreadsheet containing hashes for (almost) every value in the game."
@@ -45,7 +68,7 @@ tasks:
         dir: SSBU-Dumped-Scripts
         desc: "Adds WuBoytH's smashline template scripts for all characters' attacks. Not a submodule to avoid unnecessary downloads."
         deps: 
-            - _partial-clone-ssbu-dump
+            - _partial-clone-ssbu-scripts
         status: 
             - test -d smashline
     init-wuboy-submodule:
@@ -53,4 +76,4 @@ tasks:
         desc: "Adds WuBoytH's smashline plugin development template to the project root." 
         preconditions: 
             - git --help
-    
+

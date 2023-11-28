@@ -1,5 +1,9 @@
-cpp.rs
-lua_const.rs
-ParamLabels.csv
-SSBU-Dumped-Scripts
+# Source rust files for reference.
+table_const.rs
 
+# Value, Hash csv file
+ParamLabels.csv
+
+# Sparse checkout for dumped scripts.
+SSBU-Dumped-Scripts
+SSBU-Dumped-Motion-Lists

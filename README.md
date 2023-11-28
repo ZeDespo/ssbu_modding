@@ -35,6 +35,59 @@ If you want to perform each step one at a time, all available tasks are availabl
 task --list
 ```
 
+## Post install file breakdown
+
+### Dumps
+
+#### SSBU-Dumped-Scripts
+
+Contains all matters of attributes that make up a fighter's actions. Effects, expressions,
+sounds, active hitbox data, etc. These are the files you'd go to if you're looking to 
+change things such as how a fighter's move works or setting global rules all fighters 
+abide by (i.e. turbo mode.)
+
+[Click here for a video tutorial](https://youtu.be/iypFEqluC68?si=rXGyaoDM3-F6oWnD&t=14)
+
+#### SSBU-Dumped-Motion-Lists
+
+View the decompiled `motion_list.bin` files for every character as `motion_list.yml`
+files. Especially useful when you want to do things like port moves from different 
+characters, or add moves into a character's repetoire.
+
+[Click here for a video tutorial on porting moves.](https://www.youtube.com/watch?v=X1Gz-Lrt1H8)
+Just keep in mind that you already contain the decompiled `motion_list.bin` file thanks 
+to this dump.
+
+### Rust files
+
+#### `cpp.rs` source file 
+
+Think of it like a header file in C++, containing all function definitions available to 
+you.
+
+#### `lua_const.rs` source file
+
+A hashmap / dictionary of every constant value in SSBU.
+
+#### `tale_const.rs` source file
+
+A global table for various attributes regarding a fighter's current / past status.
+
+[Click here for a video tutorial](https://youtu.be/cle-8CWnnls?si=i9ceVhkyqag-LHBh&t=41)
+
+
+### `CSV` files 
+
+#### `animation_animcmd*.csv`
+
+Contains a list of all animation names, as well as their in-game animcd equivalents.
+
+#### `ParamLabels.csv` hash list 
+
+Contains almost every single hash value in SSBU. Special moves, camera effects, backgrounds,
+etc.
+
+
 ## Commendations Page
 
 Thank you to [`Lily Lambda λ`](https://github.com/LilyLavender) for her [Ultimate Modding Workshop](https://www.youtube.com/watch?v=02NaFwNcC3M&list=PLJ8C0Hk2ZKHvxjfFylRUIbVnDUvxLdejh&pp=iAQB) video series.
