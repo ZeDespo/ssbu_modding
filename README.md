@@ -88,6 +88,11 @@ Contains almost every single hash value in SSBU. Special moves, camera effects, 
 etc.
 
 
+## Non-repo resources
+
+For developing smashline plugins, [this documentation page is the single most useful thing](https://ultimate-research.github.io/skyline-rs-template/doc/smash/index.html). It contains useful pieces of information such as every function definition available to smashline and hashes for almost every value used in SSBU.
+
+
 ## Commendations Page
 
 Thank you to [`Lily Lambda λ`](https://github.com/LilyLavender) for her [Ultimate Modding Workshop](https://www.youtube.com/watch?v=02NaFwNcC3M&list=PLJ8C0Hk2ZKHvxjfFylRUIbVnDUvxLdejh&pp=iAQB) video series.

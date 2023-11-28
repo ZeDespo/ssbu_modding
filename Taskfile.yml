@@ -18,16 +18,6 @@ tasks:
             - cargo skyline --help
         preconditions: 
             - cargo --help
-    copy-lua-and-cpp-files:
-        cmds: 
-            - find {{.SKYLINE_DIR}} -type f -name "cpp.rs" | xargs cp -t .
-            - find {{.SKYLINE_DIR}} -type f -name "lua_const.rs" | xargs cp -t .
-        desc: "Find the `cpp.rs` and `lua_const.rs` files and copy them to the project root."
-        status: 
-            - test -f cpp.rs 
-            - test -f lua_const.rs
-        vars: 
-            SKYLINE_DIR: "$HOME/.cargo/git/checkouts/skyline-smash-714c6bb550307c21"
     default: 
         cmds: 
             - task: init-wuboy-submodule
