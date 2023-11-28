@@ -1,6 +1,3 @@
-[submodule "SSBU-Dumped-Scripts"]
-	path = SSBU-Dumped-Scripts
-	url = https://github.com/WuBoytH/SSBU-Dumped-Scripts.git
 [submodule "skyline-rs-template"]
 	path = skyline-rs-template
 	url = https://github.com/WuBoytH/skyline-rs-template.git

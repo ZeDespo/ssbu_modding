@@ -1,6 +1,11 @@
 ---
 version: '3'
 tasks:
+    _partial-clone-ssbu-dump:
+        cmd: git clone -n --depth=1 --filter=tree:0 https://github.com/WuBoytH/SSBU-Dumped-Scripts.git
+        internal: true
+        status: 
+            - test -d SSBU-Dumped-Scripts
     cargo-install-skyline: 
         cmd: cargo install cargo-skyline
         desc: "Installs the cargo-skyline crate."
@@ -20,20 +25,32 @@ tasks:
             SKYLINE_DIR: "$HOME/.cargo/git/checkouts/skyline-smash-714c6bb550307c21"
     default: 
         cmds: 
-            - task: init-submodules
-            - task: cargo-skyline-install
+            - task: init-wuboy-submodule
+            - task: cargo-install-skyline
             - task: get-param-hashes
+            - task: get-smashline-script-dump
             - task: copy-lua-and-cpp-files
         desc: "Performs all necessary steps to help you get started to mod SSBU."
     get-param-hashes:
         cmd: curl -O https://raw.githubusercontent.com/ultimate-research/param-labels/master/ParamLabels.csv
-        desc: "Download Ultimate-Research's spreadsheet containing hashes for (almost) every value in the game."
+        desc: "Download The Smash Ultimate Research Group's spreadsheet containing hashes for (almost) every value in the game."
         preconditions: 
             - curl --help
         status: 
             - test -f ParamLabels.csv
-    init-submodules:
-        cmd: git submodule update --init 
-        desc: "Adds WuBoytH's smashline plugin development template and dumped SSBU scripts to the project root." 
+    get-smashline-script-dump:
+        cmds: 
+            - git sparse-checkout set --no-cone smashline
+            - git checkout 
+        dir: SSBU-Dumped-Scripts
+        desc: "Adds WuBoytH's smashline template scripts for all characters' attacks. Not a submodule to avoid unnecessary downloads."
+        deps: 
+            - _partial-clone-ssbu-dump
+        status: 
+            - test -d smashline
+    init-wuboy-submodule:
+        cmd: git submodule update --init
+        desc: "Adds WuBoytH's smashline plugin development template to the project root." 
         preconditions: 
             - git --help
+    
