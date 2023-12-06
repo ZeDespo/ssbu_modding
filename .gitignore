@@ -7,3 +7,8 @@ ParamLabels.csv
 # Sparse checkout for dumped scripts.
 SSBU-Dumped-Scripts
 SSBU-Dumped-Motion-Lists
+
+# Submodules (just in case)
+skyline-rs-template
+
+# Don't check in your mod into this repo accidentally...
