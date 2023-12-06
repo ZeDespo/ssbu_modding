@@ -4,22 +4,22 @@ tasks:
     _partial-clone-ssbu-scripts:
         cmd: git clone -n --depth=1 --filter=tree:0 https://github.com/WuBoytH/SSBU-Dumped-Scripts.git
         internal: true
-        status: 
+        status:
             - test -d SSBU-Dumped-Scripts
     _partial-clone-ssbu-motion-lists:
-        cmd: git clone -n --depth=1 --filter=tree:0 https://github.com/WuBoytH/SSBU-Dumped-Motion-Lists.git        
+        cmd: git clone -n --depth=1 --filter=tree:0 https://github.com/WuBoytH/SSBU-Dumped-Motion-Lists.git
         internal: true
-        status: 
+        status:
             - test -d SSBU-Dumped-Motion-Lists
-    cargo-install-skyline: 
+    cargo-install-skyline:
         cmd: cargo install cargo-skyline
         desc: "Installs the cargo-skyline crate."
         status:
             - cargo skyline --help
-        preconditions: 
+        preconditions:
             - cargo --help
-    default: 
-        cmds: 
+    default:
+        cmds:
             - task: init-wuboy-submodule
             - task: cargo-install-skyline
             - task: get-param-hashes
@@ -31,45 +31,46 @@ tasks:
     get-global-table:
         cmd: curl -O https://raw.githubusercontent.com/WuBoytH/The-WuBor-Patch/dev/WuBor-Utils/src/table_const.rs
         desc: "Adds WuBoytH's file containing global constants regarding fighter states."
-        preconditions: 
-            - curl --help 
-        status: 
+        preconditions:
+            - curl --help
+        status:
             - test -f table_const.rs
     get-fighter-motion-list-dump:
-        cmds: 
+        cmds:
             - git sparse-checkout set --no-cone fighter
-            - git checkout 
+            - git checkout
         dir: SSBU-Dumped-Motion-Lists
         desc: "Adds WuBoytH's smashline template scripts for all characters' attacks. Not a submodule to avoid unnecessary downloads."
-        deps: 
+        deps:
             - _partial-clone-ssbu-motion-lists
-        status: 
+        status:
             - test -d fighter
     get-param-hashes:
         cmd: curl -O https://raw.githubusercontent.com/ultimate-research/param-labels/master/ParamLabels.csv
         desc: "Download The Smash Ultimate Research Group's spreadsheet containing hashes for (almost) every value in the game."
-        preconditions: 
+        preconditions:
             - curl --help
-        status: 
+        status:
             - test -f ParamLabels.csv
     get-smashline-script-dump:
-        cmds: 
+        cmds:
             - git sparse-checkout set --no-cone smashline
-            - git checkout 
+            - git checkout
         dir: SSBU-Dumped-Scripts
         desc: "Adds WuBoytH's smashline template scripts for all characters' attacks. Not a submodule to avoid unnecessary downloads."
-        deps: 
+        deps:
             - _partial-clone-ssbu-scripts
-        status: 
+        status:
             - test -d smashline
     init-wuboy-submodule:
         cmd: git submodule update --init
-        desc: "Adds WuBoytH's smashline plugin development template to the project root." 
-        preconditions: 
+        desc: "Adds WuBoytH's smashline plugin development template to the project root."
+        preconditions:
             - git --help
     install-precommit:
-        cmd: pip install pre-commit
+        cmds:
+          - pip install pre-commit
+          - pre-commit install
         desc: "Ensure the repo is neat and tidy with every commit!"
         preconditions:
             - pip --help
-
