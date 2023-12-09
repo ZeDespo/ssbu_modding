@@ -11,10 +11,11 @@ SSBU-Dumped-Motion-Lists
 # Submodules (just in case)
 skyline-rs-template
 
-# Ignoring personal files for development
-.python-version
-pyrightconfig.json
-
 # Don't check in your mod into this repo accidentally...
-dev/src/*
-!dev/src/lib.rs
+dev/*
+!dev/Taskfile.yml
+!dev/Cargo.toml
+!dev/Cargo.lock
+
+# Personal pyenv env
+.python-version
