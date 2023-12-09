@@ -8,7 +8,7 @@ tasks:
         cmd: cargo skyline build
         desc: "Build the NRO package."
     deploy-local:
-        cmd: find target/aarch64-skyline-switch/debug -name "*.nro" -mtime -0.0001 | xargs mv -t {{.LOCAL_DEPLOY_DIR}}
+        cmd: find {{.BUILD_DIR}} -name "*.nro" -mtime -0.0001 | xargs mv -t {{.LOCAL_DEPLOY_DIR}}
         desc: "Deploy to a local path specified in dev/.env"
         deps:
             - build
