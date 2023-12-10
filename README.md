@@ -1,4 +1,4 @@
-# SSBU Modding
+# SSBU Modding with Smashline
 
 ## Purpose
 
@@ -35,10 +35,38 @@ If you want to perform each step one at a time, all available tasks are availabl
 task --list
 ```
 
-## How to develop Smashline Mods?
+## So how do I use this repo?
 
-That, I cannot help you with, but this workspace is specifically designed for you to
-do your development in the `dev/` folder. Add your `src` directory, and get to work!
+The `dev/` folder contains most of the items you need to begin work on your mod, but
+you will need to do the following:
+
+1. Copy `Cargo.toml`, `Cargo.lock` and `rust-toolchain` from `skyline-rs-template` to `dev/`.
+2. Give your project a unique name in the `Cargo.toml` file.
+3. Make the directory `dev/src`
+4. Copy `skyline-rs-template/src/lib.rs` into `dev/src/`.
+5. Modify `dev/src/lib.rs` to the following skeleton:
+
+```rust
+#![feature(concat_idents, proc_macro_hygiene)]
+#![allow(unused_macros)]
+
+
+#[skyline::main(name = "my_new_project")]  // Change `my_new_project` to whatever you want.
+pub fn main() {}
+```
+
+Now, you have your environment set up to start your modding! If you're having trouble
+writing a mod, be sure to peek at `skyline-rs-template/` for help on how the "final"
+structure should look like.
+
+I also included a separate `Taskfile` with it's own suite of uses. In order to use it,
+you will have to:
+
+1. Make a copy of `env.yml.template` and name it `env.yml`.
+2. Populate all keys under the `vars` key in `env.yml`.
+
+This will enable you to use commands such as `task dev:deploy` so you don't have to
+look for your `.nro` file to deploy to your skyline plugins, it will do it for you!
 
 ## Post install file breakdown
 

@@ -4,8 +4,6 @@ includes:
     dev:
         taskfile: ./dev/Taskfile.yml
         dir: ./dev/
-vars:
-    BUILD_DIR: target/aarch64-skyline-switch/debug
 tasks:
     _partial-clone-ssbu-scripts:
         cmd: git clone -n --depth=1 --filter=tree:0 https://github.com/WuBoytH/SSBU-Dumped-Scripts.git
@@ -29,6 +27,16 @@ tasks:
             - cargo skyline --help
         preconditions:
             - cargo --help
+    default:
+        cmds:
+            - task: init-wuboy-submodule
+            - task: cargo-install-skyline
+            - task: get-param-hashes
+            - task: get-smashline-script-dump
+            - task: get-global-table
+            - task: get-fighter-motion-list-dump
+            - task: install-precommit
+        desc: "Performs all necessary steps to help you get started to mod SSBU."
     get-global-table:
         cmd: curl -O https://raw.githubusercontent.com/WuBoytH/The-WuBor-Patch/dev/WuBor-Utils/src/table_const.rs
         desc: "Adds WuBoytH's file containing global constants regarding fighter states."
@@ -53,13 +61,6 @@ tasks:
             - curl --help
         status:
             - test -f ParamLabels.csv
-    install-precommit:
-        cmds:
-          - pip install pre-commit
-          - pre-commit install
-        desc: "Ensure the repo is neat and tidy with every commit!"
-        preconditions:
-            - pip --help
     get-smashline-script-dump:
         cmds:
             - git sparse-checkout set --no-cone smashline
@@ -75,13 +76,10 @@ tasks:
         desc: "Adds WuBoytH's smashline plugin development template to the project root."
         preconditions:
             - git --help
-    install:
+    install-precommit:
         cmds:
-            - task: init-wuboy-submodule
-            - task: cargo-install-skyline
-            - task: get-param-hashes
-            - task: get-smashline-script-dump
-            - task: get-global-table
-            - task: get-fighter-motion-list-dump
-            - task: install-precommit
-        desc: "Performs all necessary steps to help you get started to mod SSBU."
+          - pip install pre-commit
+          - pre-commit install
+        desc: "Ensure the repo is neat and tidy with every commit!"
+        preconditions:
+            - pip --help

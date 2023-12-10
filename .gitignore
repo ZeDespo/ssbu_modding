@@ -14,8 +14,7 @@ skyline-rs-template
 # Don't check in your mod into this repo accidentally...
 dev/*
 !dev/Taskfile.yml
-!dev/Cargo.toml
-!dev/Cargo.lock
+!dev/env.yml.template
 
 # Personal pyenv env
 .python-version
