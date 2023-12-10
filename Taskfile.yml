@@ -81,5 +81,4 @@ tasks:
           - pip install pre-commit
           - pre-commit install
         desc: "Ensure the repo is neat and tidy with every commit!"
-        preconditions:
-            - pip --help
+        ignore_error: true
