@@ -15,11 +15,6 @@ tasks:
         internal: true
         status:
             - test -d SSBU-Dumped-Motion-Lists
-    build:
-        cmd: cargo skyline build
-            - find target/aarch64-skyline-switch/debug -name "*.nro" -mtime -0.001
-        dir: dev
-
     cargo-install-skyline:
         cmd: cargo install cargo-skyline
         desc: "Installs the cargo-skyline crate."
