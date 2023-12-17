@@ -7,7 +7,7 @@ includes:
 tasks:
     build:
         cmd: cargo skyline build
-        desc: "Build the NRO package."
+        desc: "Build the debug version of the NRO package."
     deploy:
         cmd: find {{.BUILD_DIR}} -name "*.nro" -mtime -0.0001 | xargs mv -t {{.NRO_DEPLOY_DIR}}
         desc: "Build and deploy your plugin to some specified folder in `env.yml`."

@@ -1,0 +1,5 @@
+# Ignore committing build directory
+target
+
+# Ignore committing your local variables
+env.yml

@@ -13,6 +13,7 @@ skyline-rs-template
 
 # Don't check in your mod into this repo accidentally...
 dev/*
+!dev/.gitignore
 !dev/Taskfile.yml
 !dev/env.yml.template
 
